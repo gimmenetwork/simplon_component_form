@@ -1,0 +1,26 @@
+{
+  "name": "simplon/component_form",
+  "type": "component",
+  "description": "Assets required for simplon/form",
+  "authors": [
+    {
+      "name": "Tino Ehrich",
+      "email": "tino@bigpun.me",
+      "role": "developer"
+    }
+  ],
+  "require": {
+    "simplon/components": "*"
+  },
+  "extra": {
+    "component": {
+      "files": [
+        "momentjs/2.10.x/moment-with-locales.min.js",
+        "momentjs/2.10.x/timezone.min.js",
+        "rome/2.1.x/rome.min.css",
+        "rome/2.1.x/rome.standalone.min.js",
+        "rome/rome.custom.css"
+      ]
+    }
+  }
+}
