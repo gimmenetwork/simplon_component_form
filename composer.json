@@ -19,7 +19,9 @@
         "momentjs/2.10.x/timezone.min.js",
         "rome/2.1.x/rome.min.css",
         "rome/2.1.x/rome.standalone.min.js",
-        "rome/rome.custom.css"
+        "rome/rome.custom.min.css",
+        "image-upload/bundle.min.css",
+        "image-upload/bundle.min.js"
       ]
     }
   }
