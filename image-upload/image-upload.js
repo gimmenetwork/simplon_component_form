@@ -88,9 +88,9 @@
 
         return this.each(function ()
         {
-            console.log('Binding image upload...', $(this));
+            //console.log('Binding image upload...', $(this));
 
-            var $that = $(this);
+            var $that = $(this).parent();
             var $button = $that.find('.button');
             var $inputFile = $that.find('input[type=file]');
             var $inputImage = $that.find('input[type=hidden]');
@@ -130,7 +130,7 @@
 
                 if (files.length > 0)
                 {
-                    console.log('Form Image Upload: starting upload...');
+                    //console.log('Form Image Upload: starting upload...');
                     $button.toggleClass('loading');
                 }
 
@@ -152,7 +152,7 @@
                             // upload image to defined URL
                             helper.upload(urlUploadScript, resizedImage, function (response)
                             {
-                                console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
+                                //console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
 
                                 $inputImage.val(response.url);
                                 helper.setButtonLabel($button, replaceLabel);
@@ -166,7 +166,7 @@
                             // create thumbnail and put it through as dataURL
                             resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
                             {
-                                console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
+                                //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
 
                                 helper.setThumbnail($thumbnailContainer, resizedImage, removeLabel);
 
