@@ -8,7 +8,13 @@
 {
     $.fn.imageUpload = function (options)
     {
-        var defaultSettings = {};
+        var defaultSettings = {
+            getUrlResponseObject: function(response)
+            {
+                return response.url;
+            }
+        };
+
         var settings = $.extend(defaultSettings, options);
 
         var resize = new window.resize();
@@ -154,7 +160,7 @@
                             {
                                 //console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
 
-                                $inputImage.val(response.url);
+                                $inputImage.val(settings.getUrlResponseObject(response));
                                 helper.setButtonLabel($button, replaceLabel);
 
                                 if ($button.hasClass('red'))
