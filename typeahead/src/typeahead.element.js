@@ -39,36 +39,39 @@ var typeaheadElement = {
                     value = id + delimiter + value;
                 }
 
-                var $searchContainer = $(this).parent().parent().parent();
-                var $singleResultContainer = $searchContainer.find('.single-result-container');
-                var $multiResultContainer = $searchContainer.find('.multi-result-container');
-                var template = '<div class="ui fluid selected-item"><a href="#" data-value="{value}"><i class="delete icon"></i></a>{label}</div>';
-
-                if ($singleResultContainer.length)
+                if($hiddenField.val().match(value) === null)
                 {
-                    $hiddenField.val(value);
+                    var $searchContainer = $(this).parent().parent().parent();
+                    var $singleResultContainer = $searchContainer.find('.single-result-container');
+                    var $multiResultContainer = $searchContainer.find('.multi-result-container');
+                    var template = '<div class="ui fluid selected-item"><a href="#" data-value="{value}"><i class="delete icon"></i></a>{label}</div>';
 
-                    $singleResultContainer.empty().append(
-                        $(template.replace('{value}', value).replace('{label}', label))
-                    );
-
-                    $searchContainer.addClass('has-single-result');
-                }
-
-                if ($multiResultContainer.length)
-                {
-                    if ($hiddenField.val() !== '')
+                    if ($singleResultContainer.length)
                     {
-                        $hiddenField.val($hiddenField.val() + ',');
+                        $hiddenField.val(value);
+
+                        $singleResultContainer.empty().append(
+                            $(template.replace('{value}', value).replace('{label}', label))
+                        );
+
+                        $searchContainer.addClass('has-single-result');
                     }
 
-                    $hiddenField.val($hiddenField.val() + value);
+                    if ($multiResultContainer.length)
+                    {
+                        if ($hiddenField.val() !== '')
+                        {
+                            $hiddenField.val($hiddenField.val() + ',');
+                        }
 
-                    $multiResultContainer.append(
-                        $(template.replace('{value}', value).replace('{label}', label))
-                    );
+                        $hiddenField.val($hiddenField.val() + value);
 
-                    $searchContainer.addClass('has-multi-result');
+                        $multiResultContainer.append(
+                            $(template.replace('{value}', value).replace('{label}', label))
+                        );
+
+                        $searchContainer.addClass('has-multi-result');
+                    }
                 }
             }
         };
