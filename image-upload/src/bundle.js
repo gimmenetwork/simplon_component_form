@@ -76,10 +76,7 @@ window.resize = (function ()
             switch (outputType)
             {
                 case 'file':
-                    canvas.toBlob(function (blob)
-                    {
-                        callback(blob);
-                    }, 'image/jpeg', 0.8);
+                    canvas.toBlob(function (blob) { callback(blob); }, 'image/jpeg', 0.8);
                     break;
 
                 case 'dataURL':

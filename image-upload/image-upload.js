@@ -167,16 +167,16 @@
                                 {
                                     $button.removeClass('red').addClass('basic');
                                 }
-                            });
+                                
+                                // create thumbnail and put it through as dataURL
+                                resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
+                                {
+                                    //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
 
-                            // create thumbnail and put it through as dataURL
-                            resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
-                            {
-                                //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
+                                    helper.setThumbnail($thumbnailContainer, resizedImage, removeLabel);
 
-                                helper.setThumbnail($thumbnailContainer, resizedImage, removeLabel);
-
-                                $button.toggleClass('loading');
+                                    $button.toggleClass('loading');
+                                });
                             });
                         });
                     }());
