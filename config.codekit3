@@ -123,15 +123,6 @@
 		"sC": 0,
 		"tS": 0
 		},
-	"\/image-upload\/resize.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/image-upload\/min\/resize-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
 	"\/image-upload\/src\/.sass-cache\/ca129ba0af96043b3a7dbff3964bb13291409400\/bundle.scssc": {
 		"ft": 8192,
 		"oA": 2,
@@ -304,14 +295,8 @@
 			},
 		{
 			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/image-upload\/resize.js",
-			"position": 1,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
 			"linkedFileAbbreviatedPath": "\/image-upload\/image-upload.js",
-			"position": 2,
+			"position": 1,
 			"type": 1
 			}
 		]

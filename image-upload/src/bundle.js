@@ -19,20 +19,59 @@ window.resize = (function ()
             this.outputQuality = (outputQuality === 'undefined' ? 0.8 : outputQuality);
         },
 
-        photo: function (file, maxSize, outputType, callback)
+        photo: function (file, maxSize, outputType, callback, forcedMimeType)
         {
             var _this = this;
             var reader = new FileReader();
 
             reader.onload = function (readerEvent)
             {
-                _this.resize(readerEvent.target.result, maxSize, outputType, callback);
+                var readerMimeType = new FileReader();
+
+                readerMimeType.onload = function(e)
+                {
+                    var mimeType;
+                    var header = "";
+                    var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
+
+                    for(var i = 0; i < arr.length; i++)
+                    {
+                        header += arr[i].toString(16);
+                    }
+
+                    switch (header)
+                    {
+                        case "89504e47":
+                            mimeType = "image/png";
+                            break;
+                        case "47494638":
+                            mimeType = "image/gif";
+                            break;
+                        case "ffd8ffe0":
+                        case "ffd8ffe1":
+                        case "ffd8ffe2":
+                            mimeType = "image/jpeg";
+                            break;
+                        default:
+                            mimeType = file.type; // Or you can use the blob.type as fallback
+                            break;
+                    }
+
+                    if(forcedMimeType)
+                    {
+                        mimeType = forcedMimeType;
+                    }
+
+                    _this.resize(readerEvent.target.result, mimeType, maxSize, outputType, callback);
+                };
+
+                readerMimeType.readAsArrayBuffer(file)
             };
 
             reader.readAsDataURL(file);
         },
 
-        resize: function (dataURL, maxSize, outputType, callback)
+        resize: function (dataURL, mimeType, maxSize, outputType, callback)
         {
             var _this = this;
             var image = new Image();
@@ -65,22 +104,22 @@ window.resize = (function ()
                 canvas.height = height;
                 canvas.getContext('2d').drawImage(image, 0, 0, width, height);
 
-                _this.output(canvas, outputType, callback);
+                _this.output(canvas, mimeType, outputType, callback);
             };
 
             image.src = dataURL;
         },
 
-        output: function (canvas, outputType, callback)
+        output: function (canvas, mimeType, outputType, callback)
         {
             switch (outputType)
             {
                 case 'file':
-                    canvas.toBlob(function (blob) { callback(blob); }, 'image/jpeg', 0.8);
+                    canvas.toBlob(function (blob) { callback(blob); }, mimeType, 0.8);
                     break;
 
                 case 'dataURL':
-                    callback(canvas.toDataURL('image/jpeg', 0.8));
+                    callback(canvas.toDataURL(mimeType, 0.8));
                     break;
             }
         }

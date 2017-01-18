@@ -103,7 +103,7 @@
             var $inputImage = $that.find('input[type=hidden]');
 
             var urlUploadScript = $that.data('upload-url');
-            var uploadMetaData = $that.data('upload-meta-data') || {};
+            var uploadMetaData = $that.data('upload-meta-data') || null;
             var imageResizeToWidth = $that.data('image-width');
             var thumbnailResizeToWidth = $that.data('thumb-width');
             var $thumbnailContainer = $($that.data('thumb-container'));
