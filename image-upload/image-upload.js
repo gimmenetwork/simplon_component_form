@@ -23,10 +23,11 @@
         // ------------------------------------------
 
         var helper = {
-            upload: function (urlUploadScript, photo, callback)
+            upload: function (urlUploadScript, photo, metaData, callback)
             {
                 var formData = new FormData();
                 formData.append('photo', photo);
+                formData.append('meta', metaData);
 
                 var request = new XMLHttpRequest();
 
@@ -102,6 +103,7 @@
             var $inputImage = $that.find('input[type=hidden]');
 
             var urlUploadScript = $that.data('upload-url');
+            var uploadMetaData = $that.data('upload-meta-data') || {};
             var imageResizeToWidth = $that.data('image-width');
             var thumbnailResizeToWidth = $that.data('thumb-width');
             var $thumbnailContainer = $($that.data('thumb-container'));
@@ -156,7 +158,7 @@
                             var resizedSize = resizedImage.size;
 
                             // upload image to defined URL
-                            helper.upload(urlUploadScript, resizedImage, function (response)
+                            helper.upload(urlUploadScript, resizedImage, uploadMetaData, function (response)
                             {
                                 //console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
 
@@ -167,7 +169,7 @@
                                 {
                                     $button.removeClass('red').addClass('basic');
                                 }
-                                
+
                                 // create thumbnail and put it through as dataURL
                                 resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
                                 {

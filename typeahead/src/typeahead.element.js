@@ -80,7 +80,7 @@ var typeaheadElement = {
     {
         e.preventDefault();
 
-        var $that = $(this)
+        var $that = $(this);
         var $fieldContainer = $(this).parent().parent().parent();
         var $hiddenField = $fieldContainer.find('input[type=hidden]');
 
