@@ -15,6 +15,8 @@
   "extra": {
     "component": {
       "files": [
+        "simplon-form/base.min.css",
+        "simplon-form/base.min.js",
         "momentjs/2.17.x/moment-with-locales.min.js",
         "momentjs/2.17.x/timezone.min.js",
         "image-upload/bundle.min.css",

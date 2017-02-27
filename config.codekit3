@@ -7,7 +7,7 @@
 		"uuidString": "14E897C4-7619-4A46-95C4-E64C6BB85A13"
 		}
 	],
-"creatorBuild": "25504",
+"creatorBuild": "25568",
 "files": {
 	"\/.idea\/.name": {
 		"ft": 8192,
@@ -69,6 +69,29 @@
 		"oAP": "\/.idea\/workspace.xml",
 		"oF": 0
 		},
+	"\/builds\/base.coffee": {
+		"ft": 32,
+		"ma": 0,
+		"mi": 1,
+		"oA": 0,
+		"oAP": "\/simplon-form\/base.min.js",
+		"oF": 2,
+		"oS": 0,
+		"sC": 1
+		},
+	"\/builds\/base.scss": {
+		"aP": 0,
+		"bl": 0,
+		"dP": 10,
+		"dS": 0,
+		"ft": 4,
+		"ma": 0,
+		"oA": 0,
+		"oAP": "\/simplon-form\/base.min.css",
+		"oF": 2,
+		"oS": 3,
+		"uL": 1
+		},
 	"\/composer.json": {
 		"ft": 524288,
 		"oA": 1,
@@ -77,229 +100,34 @@
 		"oO": 0,
 		"oS": 1
 		},
-	"\/handlebars\/4.0.x\/handlebars.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/handlebars\/4.0.x\/min\/handlebars.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/image-upload\/bundle.min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
+	"\/handlebars": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/image-upload\/bundle.min-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/image-upload\/bundle.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/image-upload\/min\/bundle.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/image-upload\/canvas-to-blob.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/image-upload\/min\/canvas-to-blob-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/image-upload\/image-upload.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/image-upload\/min\/image-upload-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/image-upload\/src\/.sass-cache\/ca129ba0af96043b3a7dbff3964bb13291409400\/bundle.scssc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/image-upload\/src\/.sass-cache\/ca129ba0af96043b3a7dbff3964bb13291409400\/bundle.scssc",
+		"oAP": "\/build\/handlebars",
 		"oF": 0
 		},
-	"\/image-upload\/src\/bundle.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/image-upload\/bundle.min.js",
-		"oF": 2,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/image-upload\/src\/bundle.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/image-upload\/bundle.min.css",
-		"oF": 2,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/momentjs\/2.10.x\/moment-with-locales.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/momentjs\/2.10.x\/min\/moment-with-locales.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/momentjs\/2.10.x\/timezone.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/momentjs\/2.10.x\/min\/timezone.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/rome\/2.1.x\/rome.min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/rome\/2.1.x\/rome.min-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/rome\/2.1.x\/rome.standalone.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/rome\/2.1.x\/min\/rome.standalone.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/rome\/rome.custom.min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
+	"\/image-upload": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/rome\/rome.custom.min-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/rome\/src\/.sass-cache\/2e29843bcdd27384e89455c695c03285a7197ace\/rome.custom.scssc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/rome\/src\/.sass-cache\/2e29843bcdd27384e89455c695c03285a7197ace\/rome.custom.scssc",
+		"oAP": "\/build\/image-upload",
 		"oF": 0
 		},
-	"\/rome\/src\/rome.custom.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/rome\/rome.custom.min.css",
-		"oF": 2,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/typeahead\/0.11.x\/typeahead.bundle.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/typeahead\/0.11.x\/min\/typeahead.bundle.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/typeahead\/0.11.x\/typeahead.bundle.slice-fix.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/typeahead\/0.11.x\/min\/typeahead.bundle.slice-fix.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/typeahead\/src\/.sass-cache\/dca59b31ef92f4cb382a539f62242248ce6537ea\/typeahead.element.scssc": {
-		"ft": 8192,
-		"oA": 2,
-		"oAP": "\/typeahead\/src\/.sass-cache\/dca59b31ef92f4cb382a539f62242248ce6537ea\/typeahead.element.scssc",
+	"\/momentjs": {
+		"ft": 65536,
+		"oA": 1,
+		"oAP": "\/build\/momentjs",
 		"oF": 0
 		},
-	"\/typeahead\/src\/typeahead.element.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 0,
-		"oAP": "\/typeahead\/typeahead.element.min.js",
-		"oF": 2,
-		"sC": 0,
-		"tS": 0
-		},
-	"\/typeahead\/src\/typeahead.element.scss": {
-		"aP": 0,
-		"bl": 0,
-		"dP": 10,
-		"dS": 0,
-		"ft": 4,
-		"ma": 0,
-		"oA": 0,
-		"oAP": "\/typeahead\/typeahead.element.min.css",
-		"oF": 2,
-		"oS": 3,
-		"uL": 1
-		},
-	"\/typeahead\/typeahead.element.min.css": {
-		"aP": 1,
-		"bl": 0,
-		"ft": 16,
-		"ma": 0,
+	"\/simplon-form": {
+		"ft": 65536,
 		"oA": 1,
-		"oAP": "\/typeahead\/typeahead.element.min-min.css",
-		"oF": 0,
-		"oS": 0
-		},
-	"\/typeahead\/typeahead.element.min.js": {
-		"ft": 64,
-		"mi": 1,
-		"oA": 1,
-		"oAP": "\/typeahead\/min\/typeahead.element.min-min.js",
-		"oF": 0,
-		"sC": 0,
-		"tS": 0
+		"oAP": "\/build\/simplon-form",
+		"oF": 0
 		}
 	},
 "hooks": [
 	],
 "manualImportLinks": {
-	"\/image-upload\/src\/bundle.js": [
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/image-upload\/canvas-to-blob.js",
-			"position": 0,
-			"type": 0
-			},
-		{
-			"followForSyntaxChecking": 1,
-			"linkedFileAbbreviatedPath": "\/image-upload\/image-upload.js",
-			"position": 1,
-			"type": 1
-			}
-		]
 	},
 "projectAttributes": {
 	"creationDate": 506448132,
@@ -1177,6 +1005,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"no-multi-assign": {
+			"active": 0,
+			"optionString": ""
+			},
 		"no-multi-spaces": {
 			"active": 0,
 			"optionString": "{'exceptions': {'Property': true, 'BinaryExpression': false, 'VariableDeclarator': false, 'ImportDeclaration': false}}"
@@ -1505,6 +1337,10 @@
 			"active": 0,
 			"optionString": ""
 			},
+		"prefer-promise-reject-errors": {
+			"active": 0,
+			"optionString": "{'allowEmptyReject': false}"
+			},
 		"prefer-rest-params": {
 			"active": 0,
 			"optionString": ""
@@ -1598,6 +1434,10 @@
 			"optionString": ""
 			},
 		"template-curly-spacing": {
+			"active": 0,
+			"optionString": "'never'"
+			},
+		"template-tag-spacing": {
 			"active": 0,
 			"optionString": "'never'"
 			},
@@ -2223,7 +2063,7 @@
 	"languageDefaultsUserDefined": [
 		],
 	"previewPathAddition": "",
-	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules",
+	"skippedFoldersString": "log, _logs, logs, _cache, cache, \/storage\/framework\/sessions, node_modules, \/handlebars, \/image-upload, \/simplon-form, \/momentjs",
 	"sourceFolderName": "source",
 	"uglifyDefinesString": "",
 	"uglifyFlags2": {
