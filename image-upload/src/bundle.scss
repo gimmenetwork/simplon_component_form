@@ -1,58 +1,49 @@
-.form-image-upload-thumbnail
-{
-    position: relative;
+.form-image-upload-thumbnail {
+  position: relative;
 
-    img
-    {
-        display: block;
-        width: 100%;
-        z-index: 90;
+  img {
+    display: block;
+    width: 100%;
+    z-index: 90;
+  }
+
+  .menu-overlay {
+    position: absolute;
+    top: 10px;
+    right: 5px;
+
+    a {
+      display: block;
+      float: right;
+      margin-right: 5px;
+      padding: 5px 8px;
+      font-size: 12px;
+      text-decoration: none;
+      text-transform: uppercase;
+      background: rgba(11, 90, 153, 0.2);
+      color: #FFF;
+
+      i {
+        margin: -4px 4px 0 0;
+      }
     }
-
-    .close-overlay
-    {
-        z-index: 100;
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: rgba(206, 18, 18, 0.75);
-        color: #FFF;
-        cursor: pointer;
-        -webkit-transition: opacity .2s;
-        -moz-transition: opacity .2s;
-        -o-transition: opacity .2s;
-        -ms-transition: opacity .2s;
-        transition: opacity .2s;
-        
-        a
-        {
-            position: absolute;
-            width: 200px;
-            height: 80px;
-            top: 50%;
-            left: 50%;
-            margin: -40px 0 0 -100px;
-            text-decoration: none;
-            text-transform: uppercase;
-            color: #FFF;
-            text-align: center;
-
-            i
-            {
-                display: block;
-                margin: 0 auto;
-            }
-        }
-    }
+  }
 }
 
-.form-image-upload-thumbnail:hover
-{
-    .close-overlay
-    {
-        opacity: 1;
+.form-image-upload-thumbnail:hover {
+  a:hover {
+    background: rgba(0, 0, 0, 0.2);
+  }
+
+  a.download-anchor:hover {
+    i {
+      color: rgb(64, 194, 159);
     }
+  }
+
+  a.remove-anchor:hover {
+    i {
+      color: rgb(222, 96, 77);
+    }
+  }
 }

@@ -77,9 +77,9 @@
                 return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
             },
 
-            setThumbnail: function ($container, thumbnail, label)
+            setThumbnail: function ($container, thumbnail, removeLabel, downloadLabel)
             {
-                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="close-overlay"><a href="#"><i class="remove huge icon"></i>' + label + '</a></div><img src=""></div></div>');
+                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="menu-overlay"><a href="#" class="remove-anchor"><i class="remove large icon"></i>' + removeLabel + '</a><a href="' + thumbnail + '" class="download-anchor" target="_blank"><i class="download large icon"></i>' + downloadLabel + '</a></div><img src=""></div></div>');
                 $thumbnailImageContainer.find('img').attr('src', thumbnail);
 
                 $container.empty().append($thumbnailImageContainer);
@@ -110,13 +110,14 @@
             var attachLabel = $that.data('attach-label');
             var replaceLabel = $that.data('replace-label');
             var removeLabel = $that.data('remove-label');
+            var downloadLabel = $that.data('download-label');
 
             if ($inputImage.val() !== '')
             {
-                helper.setThumbnail($thumbnailContainer, $inputImage.val(), removeLabel);
+                helper.setThumbnail($thumbnailContainer, $inputImage.val(), removeLabel, downloadLabel);
             }
 
-            $thumbnailContainer.on('click', function (event)
+            $thumbnailContainer.find('a.remove-anchor').on('click', function (event)
             {
                 event.preventDefault();
                 $thumbnailContainer.empty();
