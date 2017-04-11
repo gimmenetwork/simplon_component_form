@@ -111,10 +111,25 @@
             var replaceLabel = $that.data('replace-label');
             var removeLabel = $that.data('remove-label');
             var downloadLabel = $that.data('download-label');
+            var isNoThumbContainer = $that.data('no-thumb-container');
+            var $noThumbnailContainer = null;
+
+            if(isNoThumbContainer === 1)
+            {
+                $thumbnailContainer.before(
+                    $('<div id="' + $that.data('thumb-container').replace('#', '').replace('.', '') + '-no-thumb" class="form-image-upload-no-thumbnail"></div>')
+                );
+
+                $noThumbnailContainer = $($that.data('thumb-container') + '-no-thumb');
+            }
 
             if ($inputImage.val() !== '')
             {
                 helper.setThumbnail($thumbnailContainer, $inputImage.val(), removeLabel, downloadLabel);
+            }
+            else if($noThumbnailContainer)
+            {
+                $noThumbnailContainer.css('display', 'block');
             }
 
             $thumbnailContainer.find('a.remove-anchor').on('click', function (event)
@@ -123,6 +138,11 @@
                 $thumbnailContainer.empty();
                 helper.setButtonLabel($button, attachLabel);
                 $inputImage.val('');
+
+                if($noThumbnailContainer)
+                {
+                    $noThumbnailContainer.css('display', 'block');
+                }
             });
 
             $button.on('click', function (event)
@@ -175,6 +195,11 @@
                                 resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
                                 {
                                     //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
+
+                                    if($noThumbnailContainer)
+                                    {
+                                        $noThumbnailContainer.css('display', 'none');
+                                    }
 
                                     helper.setThumbnail($thumbnailContainer, resizedImage, removeLabel);
 
