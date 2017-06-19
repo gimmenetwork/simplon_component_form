@@ -5,4 +5,17 @@
       color: #999;
     }
   }
+
+  //
+  // customise UIKIT handle container
+  //
+
+  .custom-nestable-handle {
+    border-radius: 4px;
+    border: 1px dashed #cfcfcf;
+    background: #fcfcfc;
+    padding: 2px 1px;
+    margin-bottom: 10px;
+    text-align: right;
+  }
 }
