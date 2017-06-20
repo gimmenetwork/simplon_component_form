@@ -7,8 +7,18 @@
   }
 
   //
-  // customise UIKIT handle container
+  // customise UIKIT
   //
+
+  .uk-sortable {
+    margin: 0;
+    padding: 0;
+  }
+
+  .uk-sortable li {
+    list-style: none;
+    margin-bottom: 15px;
+  }
 
   .custom-nestable-handle {
     border-radius: 4px;
@@ -17,5 +27,17 @@
     padding: 2px 1px;
     margin-bottom: 10px;
     text-align: right;
+  }
+
+  .uk-sortable-transition {
+    max-height: 40px;
+
+    .custom-nestable-handle {
+      background: #ffe;
+    }
+
+    .field {
+      display: none;
+    }
   }
 }
