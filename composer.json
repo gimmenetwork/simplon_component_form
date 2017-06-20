@@ -22,10 +22,9 @@
         "image-upload/bundle.min.css",
         "image-upload/bundle.min.js",
         "handlebars/4.0.x/handlebars.min.js",
-        "uikit/2.27.x/css/uikit.min.css",
-        "uikit/2.27.x/js/uikit.min.js",
-        "uikit/2.27.x/css/components/nestable.min.css",
-        "uikit/2.27.x/js/components/nestable.min.js"
+        "uikit/3.0.x/css/uikit.min.css",
+        "uikit/3.0.x/js/uikit.min.js",
+        "uikit/3.0.x/js/uikit-icons.min.js"
       ]
     }
   }
