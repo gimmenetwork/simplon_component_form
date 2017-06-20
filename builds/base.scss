@@ -28,16 +28,16 @@
     margin-bottom: 10px;
     text-align: right;
   }
+}
 
-  .uk-sortable-transition {
-    max-height: 40px;
+.uk-sortable-transition {
+  max-height: 40px;
 
-    .custom-nestable-handle {
-      background: #ffe;
-    }
+  .custom-nestable-handle {
+    background: #ffe;
+  }
 
-    .field {
-      display: none;
-    }
+  .field {
+    display: none;
   }
 }
