@@ -1,49 +1,17 @@
 /*
- * All glory belongs to Joel Vardy. I simply put all these things together
- * so that it works in a more abstract way. Thanks Joel!
- *
- * See: https://github.com/joelvardy/javascript-image-upload
- */
-/*
- * All glory belongs to Joel Vardy. I simply put all these things together
- * so that it works in a more abstract way. Thanks Joel!
+ * All glory belongs to Joel Vardy. I put these things together
+ * and only added the data-uri handling. Thanks Joel!
  *
  * See: https://github.com/joelvardy/javascript-image-upload
  */
 (function ($) {
-    $.fn.imageUpload = function (options) {
-        var defaultSettings = {
-            getUrlResponseObject: function (response) {
-                return response.url;
-            }
-        };
-
-        var settings = $.extend(defaultSettings, options);
-
+    $.fn.imageUpload = function () {
         var resize = new window.resize();
         resize.init();
 
         // ------------------------------------------
 
         var helper = {
-            upload: function (urlUploadScript, photo, metaData, callback) {
-                var formData = new FormData();
-                formData.append('photo', photo);
-                formData.append('meta', metaData);
-
-                var request = new XMLHttpRequest();
-
-                request.onreadystatechange = function () {
-                    if (request.readyState === 4) {
-                        callback(request.response);
-                    }
-                };
-
-                request.open('POST', urlUploadScript);
-                request.responseType = 'json';
-                request.send(formData);
-            },
-
             dataURLtoBlob: function (dataURL) {
                 // convert base64/URLEncoded data component to raw binary data held in a string
                 var byteString;
