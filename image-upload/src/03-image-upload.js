@@ -68,7 +68,7 @@
             var imageQuality = parseFloat($that.data('image-quality'));
             var imageResizeToWidth = $that.data('image-width');
             var thumbnailResizeToWidth = $that.data('thumb-width');
-            var $thumbnailContainer = $($that.data('thumb-container'));
+            var $thumbnailContainer = $('#' + $that.data('thumb-container'));
             var attachLabel = $that.data('attach-label');
             var replaceLabel = $that.data('replace-label');
             var removeLabel = $that.data('remove-label');
@@ -122,8 +122,6 @@
                     }
 
                     (function () {
-                        var initialSize = files[i].size;
-
                         resize.photo(files[i], imageResizeToWidth, 'dataURL', imageQuality, function (resizedImageOriginal) {
                             $textareaImage.val(resizedImageOriginal);
                             helper.setButtonLabel($button, replaceLabel);
@@ -132,8 +130,11 @@
                                 $button.removeClass('red').addClass('basic');
                             }
 
-                            // create thumbnail and put it through as dataURL
-                            resize.photo(helper.dataURLtoBlob(resizedImageOriginal), thumbnailResizeToWidth, 'dataURL', imageQuality, function (resizedImageThumb) {
+                            //
+                            // create thumbnail
+                            //
+
+                            resize.photo(helper.dataURLtoBlob(resizedImageOriginal), thumbnailResizeToWidth, 'dataURL', 1.0, function (resizedImageThumb) {
                                 if ($noThumbnailContainer) {
                                     $noThumbnailContainer.css('display', 'none');
                                 }
