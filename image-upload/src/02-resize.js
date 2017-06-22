@@ -4,43 +4,35 @@
  *
  * See: https://github.com/joelvardy/javascript-image-upload
  */
-window.resize = (function ()
-{
+window.resize = (function () {
     'use strict';
 
-    function Resize()
-    {
+    function Resize() {
     }
 
     Resize.prototype = {
 
-        init: function (outputQuality)
-        {
+        init: function (outputQuality) {
             this.outputQuality = (outputQuality === 'undefined' ? 0.8 : outputQuality);
         },
 
-        photo: function (file, maxSize, outputType, callback, forcedMimeType)
-        {
+        photo: function (file, maxSize, outputType, outputQuality, callback, forcedMimeType) {
             var _this = this;
             var reader = new FileReader();
 
-            reader.onload = function (readerEvent)
-            {
+            reader.onload = function (readerEvent) {
                 var readerMimeType = new FileReader();
 
-                readerMimeType.onload = function(e)
-                {
+                readerMimeType.onload = function (e) {
                     var mimeType;
                     var header = "";
                     var arr = (new Uint8Array(e.target.result)).subarray(0, 4);
 
-                    for(var i = 0; i < arr.length; i++)
-                    {
+                    for (var i = 0; i < arr.length; i++) {
                         header += arr[i].toString(16);
                     }
 
-                    switch (header)
-                    {
+                    switch (header) {
                         case "89504e47":
                             mimeType = "image/png";
                             break;
@@ -57,12 +49,11 @@ window.resize = (function ()
                             break;
                     }
 
-                    if(forcedMimeType)
-                    {
+                    if (forcedMimeType) {
                         mimeType = forcedMimeType;
                     }
 
-                    _this.resize(readerEvent.target.result, mimeType, maxSize, outputType, callback);
+                    _this.resize(readerEvent.target.result, mimeType, maxSize, outputType, outputQuality, callback);
                 };
 
                 readerMimeType.readAsArrayBuffer(file)
@@ -71,30 +62,24 @@ window.resize = (function ()
             reader.readAsDataURL(file);
         },
 
-        resize: function (dataURL, mimeType, maxSize, outputType, callback)
-        {
+        resize: function (dataURL, mimeType, maxSize, outputType, outputQuality, callback) {
             var _this = this;
             var image = new Image();
 
-            image.onload = function (imageEvent)
-            {
+            image.onload = function (imageEvent) {
                 // Resize image
                 var canvas = document.createElement('canvas'),
                     width = image.width,
                     height = image.height;
 
-                if (width > height)
-                {
-                    if (width > maxSize)
-                    {
+                if (width > height) {
+                    if (width > maxSize) {
                         height *= maxSize / width;
                         width = maxSize;
                     }
                 }
-                else
-                {
-                    if (height > maxSize)
-                    {
+                else {
+                    if (height > maxSize) {
                         width *= maxSize / height;
                         height = maxSize;
                     }
@@ -104,22 +89,22 @@ window.resize = (function ()
                 canvas.height = height;
                 canvas.getContext('2d').drawImage(image, 0, 0, width, height);
 
-                _this.output(canvas, mimeType, outputType, callback);
+                _this.output(canvas, mimeType, outputType, outputQuality, callback);
             };
 
             image.src = dataURL;
         },
 
-        output: function (canvas, mimeType, outputType, callback)
-        {
-            switch (outputType)
-            {
+        output: function (canvas, mimeType, outputType, outputQuality, callback) {
+            switch (outputType) {
                 case 'file':
-                    canvas.toBlob(function (blob) { callback(blob); }, mimeType, 0.8);
+                    canvas.toBlob(function (blob) {
+                        callback(blob);
+                    }, mimeType, outputQuality);
                     break;
 
                 case 'dataURL':
-                    callback(canvas.toDataURL(mimeType, 0.8));
+                    callback(canvas.toDataURL(mimeType, outputQuality));
                     break;
             }
         }
