@@ -1,25 +1,28 @@
-#
-# init description icons
-#
+document.addEventListener 'DOMContentLoaded', ->
+  #
+  # init description icons
+  #
 
-$('i.field-description').popup {
-  hoverable: true
-  position: "right center"
-}
+  $('i.field-description').popup {
+    hoverable: true
+    position: "right center"
+  }
 
-#
-# handle clone field blocks
-#
+  #
+  # handle clone field blocks
+  #
 
-$form = $('form')
-$('.clone-remove').first().hide()
+  $form = $('form')
 
-formSubmit = ($anchor, tokenPrefix) ->
-  $('#' + $anchor.data('block')).val(tokenPrefix + '-' + $anchor.data('token'))
-  $form.submit()
+  # hide removal from first list entry
+  $('.uk-sortable').each -> $(this).find('.clone-remove:first').hide()
 
-triggerClone = ($anchor) -> formSubmit $anchor, 'a'
-triggerRemoval = ($anchor) -> formSubmit $anchor, 'r'
+  formSubmit = ($anchor, tokenPrefix) ->
+    $('#' + $anchor.data('block')).val(tokenPrefix + '-' + $anchor.data('token'))
+    $form.submit()
 
-$('.clone-block').click (e) -> triggerClone $(this)
-$('.clone-remove').click (e) -> triggerRemoval $(this)
+  triggerClone = ($anchor) -> formSubmit $anchor, 'a'
+  triggerRemoval = ($anchor) -> formSubmit $anchor, 'r'
+
+  $('.clone-block').click (e) -> triggerClone $(this)
+  $('.clone-remove').click (e) -> triggerRemoval $(this)
