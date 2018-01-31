@@ -50,7 +50,14 @@
                 $thumbnailImageContainer.find('img').attr('src', thumbnail);
                 $thumbnailImageContainer.find('.download-anchor').click(function (e) {
                     e.preventDefault();
-                    download($(this).attr('href'), new Date().getTime());
+                    var $anchor = $(this);
+                    var name = null;
+
+                    if ($anchor.attr('href').substr(0, 5) === 'data:') {
+                        name = new Date().getTime();
+                    }
+
+                    download($(this).attr('href'), name);
                 });
 
                 $container.empty().append($thumbnailImageContainer);
