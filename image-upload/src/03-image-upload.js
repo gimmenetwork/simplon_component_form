@@ -52,12 +52,14 @@
                     e.preventDefault();
                     var $anchor = $(this);
                     var name = null;
+                    var mimeType = null;
 
                     if ($anchor.attr('href').substr(0, 5) === 'data:') {
-                        name = new Date().getTime();
+                        mimeType = $anchor.attr('href').split(';')[0].substr(5);
+                        name = new Date().getTime() + '.' + mimeType.substr(6);
                     }
 
-                    download($(this).attr('href'), name);
+                    download($(this).attr('href'), name, mimeType);
                 });
 
                 $container.empty().append($thumbnailImageContainer);
