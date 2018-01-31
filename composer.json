@@ -17,8 +17,8 @@
       "files": [
         "simplon-form/base.min.css",
         "simplon-form/base.min.js",
-        "momentjs/2.17.x/moment-with-locales.min.js",
-        "momentjs/2.17.x/timezone.min.js",
+        "momentjs/2.20.x/moment-with-locales.min.js",
+        "momentjs/2.20.x/timezone.min.js",
         "image-upload/bundle.min.css",
         "image-upload/bundle.min.js",
         "handlebars/4.0.x/handlebars.min.js",

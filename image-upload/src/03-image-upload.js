@@ -40,14 +40,18 @@
                 return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
             },
 
-            setThumbnail: function ($container, removeLabel, downloadLabel, resizedOriginal, thumbnail) {
-                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="menu-overlay"><a href="#" class="remove-anchor"><i class="remove large icon"></i>' + removeLabel + '</a><a href="' + resizedOriginal + '" class="download-anchor" target="_blank"><i class="download large icon"></i>' + downloadLabel + '</a></div><img src=""></div></div>');
+            setThumbnail: function ($container, resizedOriginal, thumbnail) {
+                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="menu-overlay"><a href="#" class="remove-anchor"><i class="remove large icon"></i></a><a href="' + resizedOriginal + '" class="download-anchor" target="_blank"><i class="download large icon"></i></a></div><img src=""></div></div>');
 
                 if (!thumbnail) {
                     thumbnail = resizedOriginal;
                 }
 
                 $thumbnailImageContainer.find('img').attr('src', thumbnail);
+                $thumbnailImageContainer.find('.download-anchor').click(function (e) {
+                    e.preventDefault();
+                    download($(this).attr('href'), new Date().getTime());
+                });
 
                 $container.empty().append($thumbnailImageContainer);
             },
@@ -71,8 +75,6 @@
             var $thumbnailContainer = $('#' + $that.data('thumb-container'));
             var attachLabel = $that.data('attach-label');
             var replaceLabel = $that.data('replace-label');
-            var removeLabel = $that.data('remove-label');
-            var downloadLabel = $that.data('download-label');
             var isNoThumbContainer = $that.data('no-thumb-container');
             var $noThumbnailContainer = null;
 
@@ -85,7 +87,7 @@
             }
 
             if ($textareaImage.val() !== '') {
-                helper.setThumbnail($thumbnailContainer, removeLabel, downloadLabel, $textareaImage.val());
+                helper.setThumbnail($thumbnailContainer, $textareaImage.val());
             }
             else if ($noThumbnailContainer) {
                 $noThumbnailContainer.css('display', 'block');
@@ -122,7 +124,7 @@
                     }
 
                     (function () {
-                        resize.photo(files[i], imageResizeToWidth, 'dataURL', imageQuality, function (resizedImageOriginal) {
+                        resize.photo(files[i], imageResizeToWidth, 'dataURL', imageQuality, function (resizedImageOriginal, mimeType) {
                             $textareaImage.val(resizedImageOriginal);
                             helper.setButtonLabel($button, replaceLabel);
 
@@ -134,12 +136,12 @@
                             // create thumbnail
                             //
 
-                            resize.photo(helper.dataURLtoBlob(resizedImageOriginal), thumbnailResizeToWidth, 'dataURL', 1.0, function (resizedImageThumb) {
+                            resize.photo(helper.dataURLtoBlob(resizedImageOriginal), thumbnailResizeToWidth, 'dataURL', 1.0, function (resizedImageThumb, mimeType) {
                                 if ($noThumbnailContainer) {
                                     $noThumbnailContainer.css('display', 'none');
                                 }
 
-                                helper.setThumbnail($thumbnailContainer, removeLabel, downloadLabel, resizedImageOriginal, resizedImageThumb);
+                                helper.setThumbnail($thumbnailContainer, resizedImageOriginal, resizedImageThumb);
 
                                 $button.toggleClass('loading');
                             });

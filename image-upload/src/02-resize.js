@@ -104,7 +104,7 @@ window.resize = (function () {
                     break;
 
                 case 'dataURL':
-                    callback(canvas.toDataURL(mimeType, outputQuality));
+                    callback(canvas.toDataURL(mimeType, outputQuality), mimeType);
                     break;
             }
         }
