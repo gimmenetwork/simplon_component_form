@@ -79,8 +79,8 @@
 
             setThumbnail: function ($container, thumbnail, label)
             {
-                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="close-overlay"><a href="#"><i class="remove huge icon"></i>' + label + '</a></div><img src=""></div></div>');
-                $thumbnailImageContainer.find('img').attr('src', thumbnail);
+                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="close-overlay"><a href="#"><i class="remove huge icon"></i>' + label + '</a></div><img data-src=""></div></div>');
+                $thumbnailImageContainer.find('img').attr('data-src', thumbnail);
 
                 $container.empty().append($thumbnailImageContainer);
             },
