@@ -41,13 +41,13 @@
             },
 
             setThumbnail: function ($container, resizedOriginal, thumbnail) {
-                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="menu-overlay"><a href="#" class="remove-anchor"><i class="remove large icon"></i></a><a href="' + resizedOriginal + '" class="download-anchor" target="_blank"><i class="download large icon"></i></a></div><img src=""></div></div>');
+                var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="menu-overlay"><a href="#" class="remove-anchor"><i class="remove large icon"></i></a><a href="' + resizedOriginal + '" class="download-anchor" target="_blank"><i class="download large icon"></i></a></div><img data-src=""></div></div>');
 
                 if (!thumbnail) {
                     thumbnail = resizedOriginal;
                 }
 
-                $thumbnailImageContainer.find('img').attr('src', thumbnail);
+                $thumbnailImageContainer.find('img').attr('data-src', thumbnail);
                 $thumbnailImageContainer.find('.download-anchor').click(function (e) {
                     e.preventDefault();
                     var $anchor = $(this);
