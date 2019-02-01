@@ -21,6 +21,8 @@
         "momentjs/2.17.x/timezone.min.js",
         "image-upload/bundle.min.css",
         "image-upload/bundle.min.js",
+        "image-upload/bundle.min.css.map",
+        "image-upload/bundle.min.js.map",
         "handlebars/4.0.x/handlebars.min.js"
       ]
     }
