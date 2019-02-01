@@ -4,13 +4,10 @@
  *
  * See: https://github.com/joelvardy/javascript-image-upload
  */
-(function ($)
-{
-    $.fn.imageUpload = function (options)
-    {
+(function ($) {
+    $.fn.imageUpload = function (options) {
         var defaultSettings = {
-            getUrlResponseObject: function(response)
-            {
+            getUrlResponseObject: function (response) {
                 return response.url;
             }
         };
@@ -23,18 +20,15 @@
         // ------------------------------------------
 
         var helper = {
-            upload: function (urlUploadScript, photo, metaData, callback)
-            {
+            upload: function (urlUploadScript, photo, metaData, callback) {
                 var formData = new FormData();
                 formData.append('photo', photo);
                 formData.append('meta', metaData);
 
                 var request = new XMLHttpRequest();
 
-                request.onreadystatechange = function ()
-                {
-                    if (request.readyState === 4)
-                    {
+                request.onreadystatechange = function () {
+                    if (request.readyState === 4) {
                         callback(request.response);
                     }
                 };
@@ -44,17 +38,13 @@
                 request.send(formData);
             },
 
-            dataURLtoBlob: function (dataURL)
-            {
+            dataURLtoBlob: function (dataURL) {
                 // convert base64/URLEncoded data component to raw binary data held in a string
                 var byteString;
 
-                if (dataURL.split(',')[0].indexOf('base64') >= 0)
-                {
+                if (dataURL.split(',')[0].indexOf('base64') >= 0) {
                     byteString = atob(dataURL.split(',')[1]);
-                }
-                else
-                {
+                } else {
                     byteString = unescape(dataURL.split(',')[1]);
                 }
 
@@ -63,38 +53,33 @@
 
                 // write the bytes of the string to a typed array
                 var ia = new Uint8Array(byteString.length);
-                for (var i = 0; i < byteString.length; i++)
-                {
+                for (var i = 0; i < byteString.length; i++) {
                     ia[i] = byteString.charCodeAt(i);
                 }
 
                 return new Blob([ia], {type: mimeString});
             },
 
-            fileSize: function (size)
-            {
+            fileSize: function (size) {
                 var i = Math.floor(Math.log(size) / Math.log(1024));
                 return (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + ['B', 'kB', 'MB', 'GB', 'TB'][i];
             },
 
-            setThumbnail: function ($container, thumbnail, label)
-            {
+            setThumbnail: function ($container, thumbnail, label) {
                 var $thumbnailImageContainer = $('<div class="form-image-upload-thumbnail"><div class="close-overlay"><a href="#"><i class="remove huge icon"></i>' + label + '</a></div><img data-src=""></div></div>');
                 $thumbnailImageContainer.find('img').attr('data-src', thumbnail);
 
                 $container.empty().append($thumbnailImageContainer);
             },
 
-            setButtonLabel: function ($button, label)
-            {
+            setButtonLabel: function ($button, label) {
                 $button.find('span').text(label);
             }
         };
 
         // ------------------------------------------
 
-        return this.each(function ()
-        {
+        return this.each(function () {
             //console.log('Binding image upload...', $(this));
 
             var $that = $(this).parent();
@@ -105,82 +90,74 @@
             var urlUploadScript = $that.data('upload-url');
             var uploadMetaData = $that.data('upload-meta-data') || null;
             var imageResizeToWidth = $that.data('image-width');
-            var thumbnailResizeToWidth = $that.data('thumb-width');
+            var thumbnailResizeToWidth = $that.data('thumb-width') || null;
             var $thumbnailContainer = $($that.data('thumb-container'));
             var attachLabel = $that.data('attach-label');
             var replaceLabel = $that.data('replace-label');
             var removeLabel = $that.data('remove-label');
 
-            if ($inputImage.val() !== '')
-            {
+            if ($inputImage.val() !== '') {
                 helper.setThumbnail($thumbnailContainer, $inputImage.val(), removeLabel);
             }
 
-            $thumbnailContainer.on('click', function (event)
-            {
+            $thumbnailContainer.on('click', function (event) {
                 event.preventDefault();
                 $thumbnailContainer.empty();
                 helper.setButtonLabel($button, attachLabel);
                 $inputImage.val('');
             });
 
-            $button.on('click', function (event)
-            {
+            $button.on('click', function (event) {
                 event.preventDefault();
                 $inputFile.click();
             });
 
-            $inputFile.on('change', function (event)
-            {
+            $inputFile.on('change', function (event) {
                 event.preventDefault();
 
                 var files = event.target.files;
 
-                if (files.length > 0)
-                {
+                if (files.length > 0) {
                     //console.log('Form Image Upload: starting upload...');
                     $button.toggleClass('loading');
                 }
 
-                for (var i in files)
-                {
-                    if (typeof files[i] !== 'object')
-                    {
+                // upload image to defined URL
+                var upload = function (image) {
+                    helper.upload(urlUploadScript, image, uploadMetaData, function (response) {
+                        //console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
+
+                        $inputImage.val(settings.getUrlResponseObject(response));
+                        helper.setButtonLabel($button, replaceLabel);
+
+                        if ($button.hasClass('red')) {
+                            $button.removeClass('red').addClass('basic');
+                        }
+
+                        // create thumbnail and put it through as dataURL
+                        resize.photo(image, thumbnailResizeToWidth, 'dataURL', function (thumbImage) {
+                            //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
+
+                            helper.setThumbnail($thumbnailContainer, thumbImage, removeLabel);
+
+                            $button.toggleClass('loading');
+                        });
+                    });
+                };
+
+                for (var i in files) {
+                    if (typeof files[i] !== 'object') {
                         return false;
                     }
 
-                    (function ()
-                    {
-                        var initialSize = files[i].size;
-
-                        resize.photo(files[i], imageResizeToWidth, 'file', function (resizedImage)
-                        {
-                            var resizedSize = resizedImage.size;
-
-                            // upload image to defined URL
-                            helper.upload(urlUploadScript, resizedImage, uploadMetaData, function (response)
-                            {
-                                //console.log('Form Image Upload: successfully uploaded.', 'Image URL: ', response.url);
-
-                                $inputImage.val(settings.getUrlResponseObject(response));
-                                helper.setButtonLabel($button, replaceLabel);
-
-                                if ($button.hasClass('red'))
-                                {
-                                    $button.removeClass('red').addClass('basic');
-                                }
-
-                                // create thumbnail and put it through as dataURL
-                                resize.photo(resizedImage, thumbnailResizeToWidth, 'dataURL', function (resizedImage)
-                                {
-                                    //console.log('Form Image Upload: set thumbnail as dataURL', resizedImage);
-
-                                    helper.setThumbnail($thumbnailContainer, resizedImage, removeLabel);
-
-                                    $button.toggleClass('loading');
-                                });
+                    (function () {
+                        if (imageResizeToWidth) {
+                            resize.photo(files[i], imageResizeToWidth, 'file', function (resizedImage) {
+                                upload(resizedImage);
                             });
-                        });
+                        } else {
+                            upload(files[i]);
+                        }
                     }());
                 }
             });
