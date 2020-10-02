@@ -1,7 +1,7 @@
 {
-  "name": "simplon/component_form",
+  "name": "gimmenetwork/simplon_component_form",
   "type": "component",
-  "description": "Assets required for simplon/form",
+  "description": "Assets required for gimmenetwork/simplon_form",
   "authors": [
     {
       "name": "Tino Ehrich",
@@ -10,8 +10,14 @@
     }
   ],
   "require": {
-    "simplon/components": "*"
+    "gimmenetwork/simplon_components": "*"
   },
+  "repositories": [
+    {
+      "type": "vcs",
+      "url": "https://github.com/gimmenetwork/simplon_components"
+    }
+  ],
   "extra": {
     "component": {
       "files": [
