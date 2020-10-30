@@ -9,6 +9,9 @@
       "role": "developer"
     }
   ],
+  "replace": {
+    "simplon/component_form": "0.2.*"
+  },
   "require": {
     "gimmenetwork/simplon_components": "*"
   },
